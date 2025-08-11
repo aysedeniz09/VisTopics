@@ -278,6 +278,10 @@ The `paper/` folder contains all code and workflows for replicating the analyses
   `paper/R/study2_images_lda.R`  
   Runs LDA on captions from the news images dataset.
 
+### Data Availability
+All datasets and additional materials needed to run the LDA analyses are available on OSF:  
+[https://osf.io/vhdaj/](https://osf.io/vhdaj/) (view-only)
+
 ---
 
 ### Contact
