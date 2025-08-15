@@ -1,0 +1,22 @@
+site_name: VisTopics
+site_url: https://aysedeniz09.github.io/VisTopics
+repo_url: https://github.com/aysedeniz09/VisTopics
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.expand
+    - toc.integrate
+    - content.code.copy
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.emoji
+site_name: VisTopics
+nav:
+  - VisTopics: index.md

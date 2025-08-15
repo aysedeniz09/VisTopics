@@ -8,8 +8,7 @@
 [![Docs](https://img.shields.io/badge/Docs-Online-1f6feb?style=for-the-badge&logo=githubpages)](https://aysedeniz09.github.io/VisTopics/)
 [![How to Cite](https://img.shields.io/badge/Citation-BibTeX%20%26%20APA-blue)](#paper-replication-code)
 
-
-## VisTopics
+# VisTopics
 
 `vistopics` (Topic Visualization for Visuals) is a Python package for video and image processing, offering features such as:
 
@@ -198,7 +197,7 @@ get_caption(
 
 ### License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/aysedeniz09/VisTopics/blob/main/LICENSE) file for details.
 
 ---
 
@@ -303,10 +302,9 @@ The [`paper/`](https://github.com/aysedeniz09/VisTopics/tree/main/paper) folder 
   [`paper/R/study2_images_lda.R`](https://github.com/aysedeniz09/VisTopics/blob/main/paper/R/study2_images_lda.R)  
   Runs LDA on captions from the news images dataset.
 
-
 ### Data Availability
 All datasets and additional materials needed to run the LDA analyses are available on OSF:  
-[https://osf.io/vhdaj/](https://osf.io/vhdaj/) (view-only)
+[https://osf.io/vhdaj/](https://osf.io/vhdaj/)
 
 ---
 
