@@ -179,13 +179,12 @@ rm(list=setdiff(ls(), c("data2", "Project_name", "Output_folder", "Data_folder")
 
 #### SECTION: Post Image Captioning -----
 
-# Load and join the data
-captions_file <- read_csv("OUTPUT/captions_file.csv")
-captions_file2 <- read_csv("OUTPUT/captions_file2.csv")
+# Download data from OSF
+download.file("https://osf.io/xygvp/download", 
+              destfile = "study2_captions.csv", 
+              mode = "wb")
 
-data_temp2 <- full_join(captions_file, captions_file2)
-
-rm(captions_file, captions_file2)
+data_temp2<-read.csv("study2_captions.csv")
 
 # combine with the master file
 
@@ -218,7 +217,7 @@ openxlsx::write.xlsx(temp_table,
 
 rm(sources, engagamenet, temp_table)
 
-### SECTION: Load Data ------
+### SECTION: Wrangle Data ------
 
 data <- data3
 rm(data3)

@@ -2,22 +2,28 @@
 import os
 import random
 import shutil
-from vistopics import sample_videos, extract_frames_from_videos, reduce_duplicate_frames, get_caption
+import pandas as pd
+from vistopics import video_download, extract_frames_from_videos, reduce_duplicate_frames, get_caption
 
 ### SECTION: Settings ------
 INPUT_VIDEO_DIR = "VIDZ"
 SAMPLED_VIDEO_DIR = "VIDZSAMPLE"
 FRAMES_OUTPUT_DIR = "IMAGES/VIDZSAMPLE"
-CAPTIONS_FILE = "OUTPUT/study1_captions.csv"
+CAPTIONS_FILE = "study1_captions.csv"
 OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "your-openai-key")
 MODEL = "gpt-4o-mini"
 
-### SECTION: Step 1 — Sample Videos ------
-# Randomly sample 20% of videos and clean file names
-sample_videos(
-    input_dir=INPUT_VIDEO_DIR,
-    output_dir=SAMPLED_VIDEO_DIR,
-    sample_ratio=0.2
+### SECTION: Step 1 — Download Videos ------
+# Read CSV from OSF and download videos
+df = pd.read_csv("https://osf.io/5k283/download")
+df.to_csv("study1_video_links.csv", index=False)
+
+video_download(
+    input_df_path="study1_video_links.csv",
+    output_df_path="cleaned_videos.csv",
+    output_dir="downloaded_videos",
+    link_column="youtube_url",
+    title_column="Video_Title"
 )
 
 ### SECTION: Step 2 — Extract Frames ------
@@ -43,6 +49,7 @@ get_caption(
     model=MODEL
 )
 
+print(f"Videos downloaded to: downloaded_videos")
 print(f"Sampled videos: {SAMPLED_VIDEO_DIR}")
 print(f"Frames extracted to: {FRAMES_OUTPUT_DIR}")
 print(f"Captions saved to: {CAPTIONS_FILE}")

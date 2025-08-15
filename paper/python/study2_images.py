@@ -1,14 +1,27 @@
 ### SECTION: Imports ------
 import os
+import pandas as pd
 from vistopics import download_images_from_url, get_caption
 
 ### SECTION: Settings ------
-INPUT_CSV = "DATA/News_Images_2024_06_01_2024_12_31_NewswhipCollection.csv"
 DOWNLOADED_IMAGES_CSV = "OUTPUT/study2_download_log.csv"
 IMAGE_DIR = "images_study2"
 CAPTIONS_FILE = "OUTPUT/study2_captions.csv"
 OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "your-openai-key")
 MODEL = "gpt-4o-mini"
+
+### SECTION: Step 0 — Download and Prepare Data ------
+# Download CSV from OSF
+df = pd.read_csv("https://osf.io/5d4x6/download")
+
+# Add the link=url column
+df['link'] = df['url']
+
+# Save the modified CSV locally
+INPUT_CSV = "DATA/study2_image_links.csv"
+os.makedirs("DATA", exist_ok=True)  # Create DATA directory if it doesn't exist
+df.to_csv(INPUT_CSV, index=False)
+
 
 ### SECTION: Step 1 — Download Images ------
 # This will:
@@ -33,6 +46,7 @@ get_caption(
     model=MODEL
 )
 
+print(f"Data downloaded and prepared: {INPUT_CSV}")
 print(f"Images saved to: {IMAGE_DIR}")
 print(f"Download log saved to: {DOWNLOADED_IMAGES_CSV}")
 print(f"Captions saved to: {CAPTIONS_FILE}")

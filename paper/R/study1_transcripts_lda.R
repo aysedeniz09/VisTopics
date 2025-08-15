@@ -41,7 +41,12 @@ library(igraph)     # Network analysis and graph theory tools
 
 ### SECTION: Load Data ------
 
-data <- readr::read_csv("DATA/video_transcripts.csv")
+# Download data from OSF
+download.file("https://osf.io/7ehqy/download", 
+              destfile = "video_transcripts.csv", 
+              mode = "wb")
+
+data <- readr::read_csv("video_transcripts.csv")
 data$text<-data$transcript                                
 data$index <- seq(1:nrow(data))
 

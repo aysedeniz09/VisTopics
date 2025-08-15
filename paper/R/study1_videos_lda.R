@@ -47,6 +47,11 @@ library(ragree)       # Additional agreement coefficients
 
 ### SECTION: Load Data ------
 
+# Download data from OSF
+download.file("https://osf.io/za7h8/download", 
+              destfile = "nbc_captions.csv", 
+              mode = "wb")
+
 imported<-read.csv("nbc_captions.csv")                           
 # assign data
 data<-imported                                     
