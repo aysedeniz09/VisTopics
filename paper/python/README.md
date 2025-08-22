@@ -4,7 +4,7 @@ This folder contains Python scripts for preprocessing, caption generation, and o
 
 ## Data Access
 Some scripts require datasets stored on OSF:  
-https://osf.io/vhdaj/ (view-only)  
+https://osf.io/vhdaj/
 
 Please download the relevant datasets before running these scripts.
 

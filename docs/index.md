@@ -258,16 +258,18 @@ README.md
 ## Paper Replication Code: 
 
 **APA citation:**  
-Lokmanoglu, A. D., & Walter, D. (2025, accepted). Topic Modeling of Video and Image Data: A Visual Semantic Unsupervised Approach. *Communication Methods and Measures*.  
+Lokmanoglu, A. D., & Walter, D. (2025). Topic modeling of video and image data: A visual semantic unsupervised approach. *Communication Methods and Measures*. https://www.tandfonline.com/doi/abs/10.1080/19312458.2025.2549707
+
 
 **BibTeX citation:**  
 ```bibtex
 @article{lokmanogluwalter2025topic,
-  title={Topic Modeling of Video and Image Data: A Visual Semantic Unsupervised Approach},
-  author={Lokmanoglu, Ayse D. and Walter, Dror},
-  journal={Communication Methods and Measures},
-  year={2025},
-  note={Accepted}
+  author       = {Lokmanoglu, A. D. and Walter, D.},
+  title        = {Topic modeling of video and image data: A visual semantic unsupervised approach},
+  journal      = {Communication Methods and Measures},
+  year         = {2025},
+  doi          = {10.1080/19312458.2025.2549707},
+  url          = {https://www.tandfonline.com/doi/abs/10.1080/19312458.2025.2549707},
 }
 ```
 

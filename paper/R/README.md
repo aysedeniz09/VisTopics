@@ -4,7 +4,7 @@ This folder contains R scripts for topic modeling and statistical analysis used 
 
 ## Data Access
 Data required to run these scripts is available on OSF:  
-https://osf.io/vhdaj/ (view-only)
+https://osf.io/vhdaj/
 
 Please download the relevant datasets before running the scripts.
 
