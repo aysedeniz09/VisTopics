@@ -175,9 +175,12 @@ get_caption(
 from vistopics import download_images_from_url
 
 download_images_from_url(
-    input_csv="urls.csv",              # must have a 'url' column
-    output_csv="captions.csv",
-    image_dir="images"
+    input_csv="output/urls_cvs.csv",
+    output_csv="output/download_log.csv",
+    image_dir="images",
+    url_column="image_link",
+    index_column="uuid",
+    use_referer=True,
 )
 ```
 
