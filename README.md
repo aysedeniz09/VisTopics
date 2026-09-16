@@ -202,7 +202,7 @@ get_caption(
 )
 ```
 
-By default, `get_caption` uses a prompt validated in Lokmanoglu & Walter (2025), which instructs the model to describe the scene briefly, note (but not transcribe) any visible text, and name recognizable public figures without background context. This keeps captions consistent for downstream topic modeling.
+By default, `get_caption` uses a prompt validated in [Lokmanoglu & Walter (2025)](https://www.tandfonline.com/doi/abs/10.1080/19312458.2025.2549707), which instructs the model to describe the scene briefly, note (but not transcribe) any visible text, and name recognizable public figures without background context. This keeps captions consistent for downstream topic modeling.
 
 Supports both OpenAI and Anthropic vision models, auto-detected from the model name:
 
