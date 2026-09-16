@@ -14,7 +14,7 @@
 `vistopics` (Topic Visualization for Visuals) is a Python package for video and image processing, offering features such as:
 
 - Frame extraction from videos.
-- Caption generation for images using OpenAI.
+- Caption generation for images using OpenAI or Anthropic (Claude).
 - Video scraping and organization.
 - Duplicate frame reduction with efficient algorithms.
 - Image scraping and captioning from article URLs.
@@ -33,7 +33,7 @@ This package is designed for developers, researchers, and data scientists workin
 
 ### Installation
 
-Install `vistopics` from PyPI (after you publish it) using:
+Install `vistopics` from PyPI using:
 
 ```bash
 pip install vistopics
@@ -44,7 +44,6 @@ If you plan to use **FastDup for duplicate frame detection**, install with:
 ```bash
 pip install vistopics[fastdup]
 ```
-
 
 Alternatively, install it directly from the source:
 
@@ -100,7 +99,6 @@ Install base dependencies with:
 ```bash
 pip install -r requirements.txt
 ```
-
 
 ---
 
@@ -165,6 +163,8 @@ get_caption(
 )
 ```
 
+See [Option B, Step 2](#option-b-image-url-based-pipeline) below for full `get_caption` documentation, including custom prompts and Anthropic/Claude support.
+
 ---
 
 #### Option B: Image URL-Based Pipeline
@@ -184,6 +184,11 @@ download_images_from_url(
 )
 ```
 
+- `url_column` (default `"url"`) — column containing the URL to download. Works with either a direct image link or an article page URL (the function scrapes the page's `og:image` if needed).
+- `index_column` (optional) — column to use as each row's filename identifier. Falls back to an `"index"`/`"index_number"` column, or auto-generates one.
+- `use_referer` (default `False`) — if `True`, sets the `Referer` header to the image's own domain, helping with CDNs that use hotlink protection.
+- Direct image URLs are correctly recognized even with a query string after the extension (e.g. `.../photo.jpg?quality=75&width=1024`).
+
 **2. Caption Generation**
 
 ```python
@@ -196,6 +201,38 @@ get_caption(
     model="gpt-4o-mini"
 )
 ```
+
+By default, `get_caption` uses a prompt validated in Lokmanoglu & Walter (2025), which instructs the model to describe the scene briefly, note (but not transcribe) any visible text, and name recognizable public figures without background context. This keeps captions consistent for downstream topic modeling.
+
+Supports both OpenAI and Anthropic vision models, auto-detected from the model name:
+
+```python
+# OpenAI
+get_caption(mykey=os.environ["OPENAI_API_KEY"], path_in="images",
+            captions_file="captions.csv", model="gpt-4o-mini")
+
+# Anthropic (Claude)
+get_caption(mykey=os.environ["ANTHROPIC_API_KEY"], path_in="images",
+            captions_file="captions.csv", model="claude-haiku-4-5-20251001")
+```
+
+To override auto-detection, pass `provider="openai"` or `provider="anthropic"` explicitly.
+
+To adapt captioning to a different domain or model, pass your own `prompt`:
+
+```python
+get_caption(
+    mykey="your-api-key",
+    path_in="images",
+    captions_file="captions_file.csv",
+    model="gpt-4o-mini",
+    prompt="Describe any protest signage, crowd size, and police presence visible in this image."
+)
+```
+
+Note: different models can interpret the same instructions differently. If you switch models or providers, it's worth re-piloting your prompt on a small sample first.
+
+`get_caption` is resumable — it skips images already listed in `captions_file` (and skips hidden system files like `.DS_Store`), so an interrupted run can just be rerun to pick up where it left off.
 
 ---
 
@@ -231,7 +268,6 @@ git push origin feature-name
 5. Open a pull request
 
 ---
-
 
 ## Repository Structure
 
@@ -308,7 +344,6 @@ The [`paper/`](https://github.com/aysedeniz09/VisTopics/tree/main/paper) folder 
   [`paper/R/study2_images_lda.R`](https://github.com/aysedeniz09/VisTopics/blob/main/paper/R/study2_images_lda.R)  
   Runs LDA on captions from the news images dataset.
 
-
 ### Data Availability
 All datasets and additional materials needed to run the LDA analyses are available on OSF:  
 [https://osf.io/vhdaj/](https://osf.io/vhdaj/) (view-only)
@@ -330,8 +365,8 @@ If you have any questions or feedback, feel free to contact:
 The `vistopics` package incorporates and builds upon the work of the following projects and resources:
 
 - **[OpenAI](https://openai.com/)** – Provided API access used in the image captioning feature and support through the Researcher Access Program.  
+- **[Anthropic](https://www.anthropic.com/)** – Provided API access used in the image captioning feature.  
 - **[FastDup](https://github.com/visualdatabase/fastdup)** – Enabled efficient duplicate frame detection within the video frame processing workflow.  
 - **[OpenCV](https://opencv.org/)** – Supplied core video and image processing functionality used throughout the package.
 
 We thank the developers and maintainers of these tools for making their work publicly available and for their contributions to the open-source community.
-

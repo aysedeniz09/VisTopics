@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="vistopics",
-    version="0.1.9",
+    version="0.1.10",
     description="A package for video and image processing with captioning capabilities",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
